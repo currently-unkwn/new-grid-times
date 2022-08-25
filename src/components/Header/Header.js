@@ -11,30 +11,8 @@ import Button from "../Button";
 const Header = () => {
   return (
     <header>
-      <MobileHeader>
-        <SuperHeader>
-          <Row>
-            <ActionGroup>
-              <button>
-                <Search size={24} />
-              </button>
-              <button>
-                <Menu size={24} />
-              </button>
-            </ActionGroup>
-            <ActionGroup>
-              <button>
-                <User size={24} />
-              </button>
-            </ActionGroup>
-          </Row>
-        </SuperHeader>
-        <MainHeader>
-          <Logo />
-        </MainHeader>
-      </MobileHeader>
-      <DesktopHeader>
-        <MainHeader>
+      <SuperHeader>
+        <Row>
           <ActionGroup>
             <button>
               <Search size={24} />
@@ -43,34 +21,40 @@ const Header = () => {
               <Menu size={24} />
             </button>
           </ActionGroup>
-          <Logo />
-          <ButtonContainer>
-            <Button>Subscribe</Button>
-            <SubscribeLink href="#">Already a subscriber?</SubscribeLink>
-          </ButtonContainer>
-        </MainHeader>
-      </DesktopHeader>
+          <ActionGroup>
+            <button>
+              <User size={24} />
+            </button>
+          </ActionGroup>
+        </Row>
+      </SuperHeader>
+      <MainHeader>
+        <DesktopActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </DesktopActionGroup>
+        <Logo />
+        <SubscribeWrapper>
+          <Button>Subscribe</Button>
+          <SubLink href="/">Already a subscriber?</SubLink>
+        </SubscribeWrapper>
+      </MainHeader>
     </header>
   );
 };
-
-const MobileHeader = styled.div`
-  @media ${QUERIES.laptopAndUp} {
-    display: none;
-  }
-`;
-const DesktopHeader = styled.div`
-  display: none;
-
-  @media ${QUERIES.laptopAndUp} {
-    display: block;
-  }
-`;
 
 const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -91,6 +75,14 @@ const ActionGroup = styled.div`
   }
 `;
 
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
@@ -98,23 +90,35 @@ const MainHeader = styled(MaxWidthWrapper)`
   margin-top: 32px;
   margin-bottom: 48px;
 
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
+  }
+
   @media ${QUERIES.laptopAndUp} {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: revert;
+    margin-top: 16px;
   }
 `;
 
-const ButtonContainer = styled.div`
-  justify-self: end;
+const SubscribeWrapper = styled.div`
+  display: none;
 
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  gap: 8px;
+  @media ${QUERIES.laptopAndUp} {
+    justify-self: end;
+    position: relative;
+    display: revert;
+  }
 `;
 
-const SubscribeLink = styled.a`
+const SubLink = styled.a`
+  position: absolute;
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
   font-size: calc(14 / 16) rem;
   font-family: ${FAMILIES.serif};
   font-weight: ${WEIGHTS.normal};
