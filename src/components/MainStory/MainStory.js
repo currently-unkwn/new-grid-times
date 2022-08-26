@@ -38,11 +38,10 @@ const Heading = styled.h2`
 
 const Abstract = styled.p`
   align-self: start;
-  --line-clamp: 8;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--line-clamp);
+  -webkit-line-clamp: 8;
   overflow: hidden;
 
   font-size: 1rem;
@@ -50,11 +49,11 @@ const Abstract = styled.p`
   white-space: pre-wrap;
 
   @media ${QUERIES.tabletAndUp} {
-    --line-clamp: 16;
+    -webkit-line-clamp: 16;
   }
 
   @media ${QUERIES.laptopAndUp} {
-    --line-clamp: 8;
+    -webkit-line-clamp: 10;
   }
 `;
 

@@ -7,9 +7,7 @@ const SecondaryStory = ({ id, title, image, location, abstract }) => {
       <Wrapper>
         <Image alt={image.alt} src={image.src} />
         <Heading>{title}</Heading>
-        <div>
-          <Abstract>{abstract}</Abstract>
-        </div>
+        <Abstract>{abstract}</Abstract>
       </Wrapper>
     </a>
   );
@@ -49,7 +47,9 @@ const Abstract = styled.p`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  /* Neccessary for clamping text*/
   overflow: hidden;
+  align-self: start;
 
   font-size: 1rem;
   white-space: pre-wrap;
