@@ -21,6 +21,8 @@ const MainStory = ({ id, title, image, location, abstract, ...delegated }) => {
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
+
+
 `;
 
 const Image = styled.img`
