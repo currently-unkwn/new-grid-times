@@ -36,13 +36,14 @@ const SpecialtyStoryGrid = () => {
         >
           Sports
         </SectionTitle>
-        <SportsStoriesWrapper>
-          <SportsStories>
-            {SPORTS_STORIES.map((data) => (
+
+        <SportsStories>
+          {SPORTS_STORIES.map((data) => (
+            <SportsStoryWrapper>
               <MiniStory key={data.id} {...data} />
-            ))}
-          </SportsStories>
-        </SportsStoriesWrapper>
+            </SportsStoryWrapper>
+          ))}
+        </SportsStories>
       </SportsSection>
     </Wrapper>
   );
@@ -52,40 +53,47 @@ const Wrapper = styled.div`
   display: grid;
   gap: 48px;
 
+  @media ${QUERIES.tabletAndUp} {
+    grid-template-columns: minmax(0px, auto);
+    gap: 64px;
+  }
+
   @media ${QUERIES.laptopAndUp} {
-    grid-template-columns: 1fr 1fr;
-    gap: 48px 0;
+    grid-template-columns: 1fr minmax(0px, 1fr);
+    gap: 0px;
   }
 `;
 
 const MarketsSection = styled.section`
   @media ${QUERIES.laptopAndUp} {
     padding-right: var(--grid-divider);
+    margin-right: var(--grid-divider);
     border-right: var(--grid-border);
   }
 `;
 
 const MarketCards = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
   gap: 16px;
 `;
 
-const SportsSection = styled.section`
-  @media ${QUERIES.laptopAndUp} {
-    padding-left: var(--grid-divider);
+const SportsSection = styled.section``;
+
+const SportsStoryWrapper = styled.div`
+  @media ${QUERIES.tabletAndUp} {
+    min-width: 220px;
   }
 `;
 
-const SportsStoriesWrapper = styled.div``;
-
 const SportsStories = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
   gap: 16px;
 
   @media ${QUERIES.tabletAndUp} {
     display: flex;
+    overflow: auto;
   }
 `;
 
